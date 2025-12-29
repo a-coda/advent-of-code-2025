@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/safecodes.csproj" />
+  <Project Path="test/test.csproj" />
+</Solution>
