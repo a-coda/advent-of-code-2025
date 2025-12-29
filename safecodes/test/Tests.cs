@@ -39,16 +39,17 @@ public class Tests
         }
     }
 
-    [Test]
-    public void Test_ProcessCodes()
+    [TestCase(Strategy.EndOfTurn, 3)]
+    [TestCase(Strategy.AnyClick, 6)]
+    public void Test_ProcessCodes(Strategy strategy, int expectedZeroes)
     {
         var safePosition = new SafePosition();
         using (var stream = GetTestStream())
         {
-            Program.ProcessCodes(safePosition, stream);
+            Program.ProcessCodes(strategy, safePosition, stream);
         }
 
-        Assert.That(safePosition.Zeroes, Is.EqualTo(3));
+        Assert.That(safePosition.Zeroes, Is.EqualTo(expectedZeroes));
     }
 
     private static Stream GetTestStream()

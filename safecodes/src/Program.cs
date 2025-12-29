@@ -5,9 +5,9 @@ public class Program
     public static void Main(string[] args)
     {
         SafePosition safePosition = new SafePosition();
-        using (var stream = new FileStream(@"C:\Users\jason\source\repos\advent2025\safecodes\src\puzzelinput.txt", FileMode.Open, FileAccess.Read))
+        using (var stream = new FileStream(@"C:\Users\jason\source\repos\advent-of-code-2025\safecodes\src\puzzleinput.txt", FileMode.Open, FileAccess.Read))
         {
-            ProcessCodes(safePosition, stream);
+            ProcessCodes(Strategy.EndOfTurn, safePosition, stream);
         }
 
         Console.WriteLine($"Final Position: {safePosition.Zeroes}");
@@ -30,11 +30,11 @@ public class Program
         return codes.Select(code => ParseCode(code));
     }
 
-    public static void ProcessCodes(SafePosition safePosition, Stream stream)
+    public static void ProcessCodes(Strategy strategy, SafePosition safePosition, Stream stream)
     {
         foreach (var code in ParseCodes(ReadCodesFromStream(stream)))
         {
-            safePosition.ProcessCode(code);
+            safePosition.ProcessCode(strategy, code);
         }
     }
 
